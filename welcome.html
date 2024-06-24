@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="calendar.css">
+</head>
+<body>
+    <marquee>Your next period is coming in 7 days!!</marquee>
+    <div class="top-bar">
+        <div class="welcome-message">Welcome <span id="username"></span></div>
+        <button class="logout-button" onclick="logout()">Logout</button>
+    </div>
+    
+    <div class="container">
+        <div id="calendar"></div>
+        <button class="add-button" onclick="showPopup()">Add</button>
+    </div>
+    <div id="popup" class="popup">Successfully added</div>
+
+    <script src="calendar.js"></script>
+    <script>
+        function logout() {
+            window.location.href = 'index.html';
+        }
+
+        function showPopup() {
+            var popup = document.getElementById('popup');
+            popup.classList.add('show');
+            setTimeout(function() {
+                popup.classList.remove('show');
+            }, 3000);
+        }
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('username');
+            document.getElementById('username').innerText = username ? username : 'User';
+        };
+    </script>
+</body>
+</html>
